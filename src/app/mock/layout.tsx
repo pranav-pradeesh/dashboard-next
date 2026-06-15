@@ -2,7 +2,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Stethoscope, Building2, Home, RotateCcw } from "lucide-react";
+import { Stethoscope, Building2, Home, RotateCcw, Database } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { MockStoreProvider, useMockStore } from "./_store";
 
@@ -14,7 +14,7 @@ const TABS = [
 
 function MockHeader() {
   const pathname = usePathname();
-  const { reset } = useMockStore();
+  const { reset, loadDemo } = useMockStore();
   return (
     <header className="sticky top-0 z-40 border-b border-gray-200 bg-white">
       <div className="mx-auto flex h-14 max-w-6xl items-center gap-1 px-4">
@@ -41,16 +41,26 @@ function MockHeader() {
             );
           })}
         </nav>
-        <button
-          onClick={() => {
-            if (confirm("Reset all mock data?")) reset();
-          }}
-          className="ml-auto inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm text-gray-500 hover:bg-gray-100"
-          title="Reset demo data"
-        >
-          <RotateCcw className="h-4 w-4" />
-          <span className="hidden sm:inline">Reset</span>
-        </button>
+        <div className="ml-auto flex items-center gap-1">
+          <button
+            onClick={loadDemo}
+            className="inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm text-gray-500 hover:bg-gray-100"
+            title="Load sample data"
+          >
+            <Database className="h-4 w-4" />
+            <span className="hidden sm:inline">Load samples</span>
+          </button>
+          <button
+            onClick={() => {
+              if (confirm("Clear all mock data?")) reset();
+            }}
+            className="inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm text-gray-500 hover:bg-gray-100"
+            title="Clear all data"
+          >
+            <RotateCcw className="h-4 w-4" />
+            <span className="hidden sm:inline">Clear</span>
+          </button>
+        </div>
       </div>
     </header>
   );
