@@ -7,7 +7,7 @@ import { signOut, useSession } from "next-auth/react";
 import {
   LayoutDashboard, Phone, MessageSquareText, BarChart3, CalendarCheck, PhoneCall,
   Radio, Settings, Building2, Stethoscope, HelpCircle, Receipt, Siren, BookOpen,
-  Network, Users, Boxes, LogOut, PlusCircle, Menu, X,
+  Network, Users, Boxes, LogOut, PlusCircle, Menu, X, UserPlus,
 } from "lucide-react";
 import { api } from "@/lib/api";
 import { useCurrentHospital } from "./providers";
@@ -20,6 +20,7 @@ const SECTIONS: { title: string; items: Item[]; superAdminOnly?: boolean }[] = [
     title: "Operations",
     items: [
       { href: "/overview", label: "Overview", icon: LayoutDashboard },
+      { href: "/patients", label: "Patients", icon: UserPlus },
       { href: "/calls", label: "Calls", icon: Phone },
       { href: "/qa", label: "Call QA", icon: MessageSquareText },
       { href: "/analytics", label: "Analytics", icon: BarChart3 },
